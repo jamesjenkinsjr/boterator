@@ -16,8 +16,17 @@ const server = app.listen(
 );
 
 app.post('/', (req, res) => {
-    const text = req.body;
-    console.log(text);
-    res.send('No way Jose');
+    const data = req.body;
+    const text = req.body.text;
+    const channel = req.body.channel_name;
+    console.log(data);
+    if (text && text === 'on') {
+        res.send('Turning on moderation for ' + channel);
+    } else if (text && text === 'off') {
+        res.send('Turning off moderation for ' + channel);
+    } else {
+        res.send('Moderation status');
+    }
+
     //bot goes here
 });
